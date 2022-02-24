@@ -1,0 +1,54 @@
+program: declblock
+decl: NAME ":" (SIGNED_NUMBER | id) ";"         -> declassign
+    | "import" NAME ";"                         -> declimport
+    | id NAME params ";" declblock stmt         -> declfunc
+ //   | "class" NAME params "{" declblock "}"   -> declclass
+
+declblock: decl*
+
+params: ["(" [param ("," param)* ] ")"]         -> funcparams
+param: TYPE NAME                                -> funcparam
+
+stmt: "if" "(" cond ")" stmt ["else" stmt]      -> stmtif
+    | "while" "(" cond ")" stmt                 -> stmtwhile
+    | id "=" expr ";"                           -> stmtset
+    | id ":=" expr ";"                          -> stmtmov
+    | call ";"                                  -> stmtcall
+    | "{" stmt* "}"                             -> stmtblock
+
+cond: expr ">" expr                             -> condgt
+    | expr "<" expr                             -> condlt
+    | expr "==" expr                            -> condeq
+    | expr "!=" expr                            -> condne
+    | cond "and" cond                           -> condand
+    | cond "or" cond                            -> condor
+    | cond "xor" cond                           -> condxor
+    | "not" cond                                -> condnot
+    | "(" cond ")"                              -> cond
+
+expr: id                                        -> expr
+    | SIGNED_NUMBER                             -> expr
+    | expr "+" expr                             -> expradd
+    | expr "-" expr                             -> exprsub
+    | expr "*" expr                             -> exprmul
+    | expr "/" expr                             -> exprdiv
+    | expr "%" expr                             -> exprmod
+    | call                                      -> expr
+    | "(" expr ")"                              -> expr
+call: id "(" [expr ("," expr)* ] ")"
+id: VAR                                         -> idfind
+  | id "." VAR                                  -> idget
+
+
+VAR: STRING
+TYPE: STRING
+NAME: STRING
+
+STRING : /\w+/
+COMMENT: "#" /[^\n]/*
+
+%import common.SIGNED_NUMBER
+//%import common.ESCAPED_STRING
+%import common.WS
+%ignore WS
+%ignore COMMENT

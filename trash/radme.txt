@@ -1,0 +1,55 @@
+# C like Language for FAL
+# comment
+
+| - type important
+
+# types
+enum
+int
+bool
+built-in: Wire, Cell
+
+enum Wire {
+	red,
+	green
+}
+
+Wire a = red; # Wire::red;
+
+
+Cell b = north_west[1];
+Cell[4] c;
+
+The FMCU has 4 internal read-write registers: 
+MEM1        MEM2        MEM3        MEM4 
+It also has 4 read-only registers: 
+MEM5 or IPT: Instruction pointer index. 
+MEM6 or CNR: Number of Signals on the Red Wire Input. 
+MEM7 or CNG: Number of Signals on the Green Wire Input 
+MEM8 or CLK: Monotonic clock. 
+
+north_west[1-4] - North Port 01 - MEM1[1-4]. 
+south_west[1-4] - South Port 01 - MEM2[1-4]. 
+north_east[1-4] - North Port 02 - MEM3[1-4]. 
+south_east[1-4] - South Port 02 - MEM4[1-4]. 
+north=north_west
+south=south_west
+
+
+
+Cell status = north_east[1];
+Cell out = north_east[];
+if(status==1) {
+	out = 3;
+} else {
+	if(find(Wire::red, status)>1) {
+		out = 4;
+	}
+}
+class CommTool {
+	Cell out;
+	void init() {
+	}
+}
+
+CommTool a();

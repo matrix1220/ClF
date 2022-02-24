@@ -1,0 +1,78 @@
+# every type is by default constexpr
+#define status mem11
+cell status (mem12);
+int cnt (13);
+status = 1;
+if(status==1) {
+	find(red);
+}
+int addin(ptr status) {
+	
+}
+
+# Ethernet
+void send(ptr item) {
+	#sendsymbol;
+	while(true) {
+		while(find(red, sendsymbol) > 0);
+		outport1 = sendsymbol;
+		ptr temp = find(red, sendsymbol);
+		if(temp > 0) {
+			sleep(clk % temp);
+			continue;
+		}
+		outport2 = product;
+	}
+}
+
+
+ptr product := mem21;
+ptr current := mem22;
+while(true) {
+	if(status==0) {
+		while(true) {
+			if(find(green, product) < mem44) {
+				send(product);
+				current = temp;
+				status=1;
+			}
+		}
+	} else if(status==1) {
+
+	}
+}
+
+# simple
+mem1:= mem2; # mov
+mem1 = mem2; # set
+
+X:= find(red, X);
+Y:= find(red, Y);
+
+
+temp=temp1=mem1;
+temp2=mem2;
+// TruckController.HLF
+import Truck;
+X:mem2; Y:mem3; truck1 : mem11; truck1status:mem12; D:10;
+
+
+func goPoint(Register truck);
+X:=mem2;
+{
+
+}
+
+proc __main__;
+{
+	X=find(red, X);
+	Y=find(red, Y);
+	while(true) {
+		if(truck1status==1) {
+			goPoint(truck1);
+		} else if(truck1status==2) {
+
+		}
+	}
+
+}

@@ -1,0 +1,30 @@
+X:mem21; Y:mem22; truck : mem23; D:10;
+
+#class Truck(Register id, RAM unitController) {
+#	void go(Value x, Value y) {
+#	 unitController[0]:= id;
+#    unitController[1] = x;
+#    unitController[2] = y;
+#	}
+#}
+#truck2: Truck(truck1);
+
+class checker(Register X, Register Y, Wire input, Register enemytype) {
+	boolean check() {
+	 if(find(input, enemytype)>0) return true;
+	 x = x + 1;
+	 if(x>50) {y = y + 1; x=0;}
+	 if(y>50) {y = 0;}
+	 return false;
+	}
+}
+
+void __main__;
+{
+  #truck2.run();
+  #X = find(red, X)-D;
+  if(X==truck) {
+    X:= truck*2+X * truck + truck*2;
+  }
+
+}
